@@ -60,7 +60,6 @@ export const environment: AppCfg = {
       'es',
       'he',
       'fa'
-    ],
-    translationPath: 'assets/i18n'
+    ]
   }
 };
