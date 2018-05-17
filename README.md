@@ -169,8 +169,6 @@ export class AppComponent {
 
 1.  `@nwx/i18n` uses the great `@ngx-translate` package under the hood.
 
-# Sample logs
-
 # Running the tests
 
 To run the tests against the current environment:
