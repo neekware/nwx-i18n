@@ -103,35 +103,35 @@
         }
       }
     },
-    "logger": {
-      "root": "pkgs/logger",
+    "i18n": {
+      "root": "pkgs/i18n",
       "projectType": "library",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
-            "project": "pkgs/logger/ng-package.json"
+            "project": "pkgs/i18n/ng-package.json"
           },
           "configurations": {
             "production": {
-              "project": "pkgs/logger/ng-package.json"
+              "project": "pkgs/i18n/ng-package.json"
             }
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "pkgs/logger/tst/test.ts",
-            "tsConfig": "pkgs/logger/tsconfig.spec.json",
-            "karmaConfig": "pkgs/logger/karma.conf.js"
+            "main": "pkgs/i18n/tst/test.ts",
+            "tsConfig": "pkgs/i18n/tsconfig.spec.json",
+            "karmaConfig": "pkgs/i18n/karma.conf.js"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "pkgs/logger/tsconfig.lib.json",
-              "pkgs/logger/tsconfig.spec.json"
+              "pkgs/i18n/tsconfig.lib.json",
+              "pkgs/i18n/tsconfig.spec.json"
             ],
             "exclude": ["**/node_modules/**"]
           }
@@ -139,5 +139,5 @@
       }
     }
   },
-  "defaultProject": "logger"
+  "defaultProject": "i18n"
 }
