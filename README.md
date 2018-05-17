@@ -72,7 +72,7 @@ import { environment } from '../environments/environment';
   declarations: [AppComponent],
   imports: [
     BrowserModule,
-    CfgModule.forRoot(environment),
+    CfgModule.forRoot(environment), // make the environment injectable
     LoggerModule,
     I18nModule.forRoot()
   ],
