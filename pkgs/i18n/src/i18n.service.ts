@@ -24,13 +24,13 @@ import { registerActiveLocales } from './i18n.locales';
   providedIn: 'root'
 })
 export class I18nService {
-  private options: AppCfg = null;
-  @Output() language$ = new EventEmitter<string>();
+  public options: AppCfg = null;
+  @Output() languageChange$ = new EventEmitter<string>();
 
   constructor(
-    private cfg: CfgService,
-    private log: LogService,
-    private xlate: TranslateService
+    public cfg: CfgService,
+    public log: LogService,
+    public xlate: TranslateService
   ) {
     this.options = { i18n: { ...DefaultI18nCfg }, ...cfg.options };
     this.initLanguage();
@@ -70,7 +70,7 @@ export class I18nService {
 
   setCurrentLanguage(iso: string) {
     this.xlate.use(iso);
-    this.language$.emit(iso);
+    this.languageChange$.emit(iso);
   }
 
   isCurrentLanguage(iso: string): boolean {

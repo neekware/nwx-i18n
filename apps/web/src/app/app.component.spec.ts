@@ -14,17 +14,16 @@ import {
 
 import { AppComponent } from './app.component';
 import { I18nModule } from 'pkgs/i18n';
+import { I18nTranslations } from 'pkgs/i18n/src/i18n.utils';
 
 const AppEnv: AppCfg = {
   appName: '@nwx/i18n',
   production: false
 };
 
-let translations: any = { TEST: 'This is a test' };
-
-class FakeLoader implements TranslateLoader {
+class CustomLoader implements TranslateLoader {
   getTranslation(lang: string): Observable<any> {
-    return observableOf(translations);
+    return observableOf(I18nTranslations[lang]);
   }
 }
 
@@ -37,7 +36,7 @@ describe('AppComponent', () => {
         LogModule,
         I18nModule.forRoot(),
         TranslateModule.forRoot({
-          loader: { provide: TranslateLoader, useClass: TranslateFakeLoader }
+          loader: { provide: TranslateLoader, useClass: CustomLoader }
         })
       ],
       providers: [{ provide: CFG_OPTIONS, useValue: AppEnv }],

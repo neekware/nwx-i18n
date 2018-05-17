@@ -15,85 +15,29 @@ import { DefaultLanguage } from './i18n.defaults';
 
 export const I18nTranslations = {
   de: {
-    'APP.HEADLINE': 'Finanzmarktforschungsportal',
-    'COMMON.ABOUT': 'Über',
-    'COMMON.ACCOUNT': 'Konto',
-    'COMMON.ADMIN': 'Administrator',
-    'COMMON.ANALYZE': 'Analysieren',
-    'COMMON.BONDS': 'Fesseln',
-    'COMMON.CONTACT': 'Kontakt',
-    'COMMON.DARK': 'Dunkles Thema',
-    'COMMON.EMAIL': 'Email'
+    'COMMON.ABOUT': 'Über'
   },
   en: {
-    'APP.HEADLINE': 'Financial Market Research Portal',
-    'COMMON.ABOUT': 'About',
-    'COMMON.ACCOUNT': 'Account',
-    'COMMON.ADMIN': 'Admin',
-    'COMMON.ANALYZE': 'Analyze',
-    'COMMON.BONDS': 'Bonds',
-    'COMMON.CONTACT': 'Contact',
-    'COMMON.DARK': 'Dark Theme',
-    'COMMON.EMAIL': 'Email'
+    'COMMON.ABOUT': 'About'
   },
   es: {
-    'APP.HEADLINE': 'Portal de investigación del mercado financiero',
-    'COMMON.ABOUT': 'Acerca de',
-    'COMMON.ACCOUNT': 'Cuenta',
-    'COMMON.ADMIN': 'Administración',
-    'COMMON.ANALYZE': 'Analizar',
-    'COMMON.BONDS': 'Cautiverio',
-    'COMMON.CONTACT': 'Contacto',
-    'COMMON.DARK': 'Tema oscuro',
-    'COMMON.EMAIL': 'Email'
+    'COMMON.ABOUT': 'Acerca de'
   },
   fa: {
-    'APP.HEADLINE': 'پورتال تحقیقات بازار مالی',
-    'COMMON.ABOUT': 'در باره',
-    'COMMON.ACCOUNT': 'حساب',
-    'COMMON.ADMIN': 'مدیر',
-    'COMMON.ANALYZE': 'تجزیه و تحلیل',
-    'COMMON.BONDS': 'اوراق قرضه',
-    'COMMON.CONTACT': 'تماس',
-    'COMMON.DARK': 'تم تاریک',
-    'COMMON.EMAIL': 'پست الکترونیک'
+    'COMMON.ABOUT': 'در باره'
   },
   fr: {
-    'APP.HEADLINE': 'Portail de recherche sur les marchés financiers',
-    'COMMON.ABOUT': 'Sur',
-    'COMMON.ACCOUNT': 'Compte',
-    'COMMON.ADMIN': 'Admin',
-    'COMMON.ANALYZE': 'Analyser',
-    'COMMON.BONDS': 'Obligations',
-    'COMMON.CONTACT': 'Contact',
-    'COMMON.DARK': 'Thème sombre',
-    'COMMON.EMAIL': 'Email'
+    'COMMON.ABOUT': 'Sur'
   },
   he: {
-    'APP.HEADLINE': 'פורטל שוק ההון',
-    'COMMON.ABOUT': 'על אודות',
-    'COMMON.ACCOUNT': 'חֶשְׁבּוֹן',
-    'COMMON.ADMIN': 'מנהל מערכת',
-    'COMMON.ANALYZE': 'לְנַתֵחַ',
-    'COMMON.BONDS': 'קשרים',
-    'COMMON.CONTACT': 'איש קשר',
-    'COMMON.DARK': 'ערכת נושא כהה',
-    'COMMON.EMAIL': 'אֶלֶקטרוֹנִי'
+    'COMMON.ABOUT': 'על אודות'
   },
   'zh-cn': {
-    'APP.HEADLINE': '金融市场研究门户',
-    'COMMON.ABOUT': '关于',
-    'COMMON.ACCOUNT': '帐户',
-    'COMMON.ADMIN': '管理员',
-    'COMMON.ANALYZE': '分析',
-    'COMMON.BONDS': '债券',
-    'COMMON.CONTACT': '联系',
-    'COMMON.DARK': '黑暗的主题',
-    'COMMON.EMAIL': '电子邮件'
+    'COMMON.ABOUT': '关于'
   }
 };
 
-export class I18nMockTranslationLoader implements TranslateLoader {
+export class I18nTranslationLoader implements TranslateLoader {
   getTranslation(lang: string): Observable<any> {
     const code = lang.toLocaleLowerCase();
     if (I18nTranslations.hasOwnProperty(lang)) {
