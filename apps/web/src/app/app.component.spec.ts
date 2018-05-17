@@ -5,17 +5,41 @@ import { CfgModule, AppCfg, CFG_OPTIONS } from '@nwx/cfg';
 
 import { LogModule } from '@nwx/logger';
 
+import { Observable, of as observableOf } from 'rxjs';
+import {
+  TranslateLoader,
+  TranslateModule,
+  TranslateFakeLoader
+} from '@ngx-translate/core';
+
 import { AppComponent } from './app.component';
+import { I18nModule } from 'pkgs/i18n';
 
 const AppEnv: AppCfg = {
   appName: '@nwx/i18n',
   production: false
 };
 
+let translations: any = { TEST: 'This is a test' };
+
+class FakeLoader implements TranslateLoader {
+  getTranslation(lang: string): Observable<any> {
+    return observableOf(translations);
+  }
+}
+
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserModule, CfgModule.forRoot(AppEnv), LogModule],
+      imports: [
+        BrowserModule,
+        CfgModule.forRoot(AppEnv),
+        LogModule,
+        I18nModule.forRoot(),
+        TranslateModule.forRoot({
+          loader: { provide: TranslateLoader, useClass: TranslateFakeLoader }
+        })
+      ],
       providers: [{ provide: CFG_OPTIONS, useValue: AppEnv }],
       declarations: [AppComponent]
     }).compileComponents();
