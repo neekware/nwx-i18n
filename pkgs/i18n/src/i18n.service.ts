@@ -84,6 +84,10 @@ export class I18nService {
   }
 
   private initLanguage() {
+    registerActiveLocales(
+      this.options.i18n.availableLanguages,
+      this.options.i18n.enabledLanguages
+    );
     let iso = this.options.i18n.defaultLanguage;
     this.xlate.addLangs(Object.keys(this.options.i18n.enabledLanguages));
     const language = this.xlate.getBrowserCultureLang().toLowerCase();

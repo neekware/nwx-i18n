@@ -8,8 +8,14 @@
 
 import { registerLocaleData } from '@angular/common';
 
-export function registerActiveLocales(enabledLanguages) {
-  for (const lang in enabledLanguages) {
-    registerLocaleData(enabledLanguages['localeEs'], enabledLanguages['localeEsExtra']);
+import { LanguageInfo } from './i18n.types';
+
+export function registerActiveLocales(
+  avialableLanguages: LanguageInfo,
+  enabledLanguages: string[]
+) {
+  for (const lang of enabledLanguages) {
+    const { name, locale, localeExtra } = avialableLanguages[lang];
+    registerLocaleData(locale, localeExtra);
   }
 }
