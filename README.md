@@ -102,16 +102,18 @@ export class AppComponent {
 }
 ```
 
+Include your translated files in the /assets/i18n directory of your application.
+`/assets/i18n/en.json`
+
 ```json
-// In your app's `assets/i18n/en.json`
 {
   "COMMON.WELCOME": "Welcome",
   "COMMON.ABOUT": "About"
 }
 ```
 
+`/assets/i18n/fr.json`
 ```json
-// In your app's `/assets/i18n/fr.json`
 {
   "COMMON.WELCOME": "Bienvenue",
   "COMMON.ABOUT": "Sur"
