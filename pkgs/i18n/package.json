@@ -1,0 +1,12 @@
+{
+  "name": "@nwx/logger",
+  "description": "A simple logger module for Angular applications",
+  "peerDependencies": {
+    "rxjs": "^6.0.0",
+    "@angular/core": "^6.0.0",
+    "@nwx/cfg": "^1.0.0",
+    "@nwx/logger": "^1.0.1",
+    "@ngx-translate/core": "^10.0.1",
+    "@ngx-translate/http-loader": "^3.0.1"
+  }
+}
