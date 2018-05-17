@@ -1,6 +1,6 @@
 {
-  "name": "@nwx/logger",
-  "description": "A simple logger module for Angular applications",
+  "name": "@nwx/i18n",
+  "description": "A simple translation module for Angular applications",
   "peerDependencies": {
     "rxjs": "^6.0.0",
     "@angular/core": "^6.0.0",
