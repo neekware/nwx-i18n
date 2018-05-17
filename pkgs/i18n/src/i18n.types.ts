@@ -34,8 +34,6 @@ export class I18nCfg {
   enabledLanguages: string[];
   // available languages
   availableLanguages: LanguageInfo;
-  // path to load i18n json files (default = 'assets/i18n/')
-  i18nAssetsBasePath: string;
 }
 
 /**

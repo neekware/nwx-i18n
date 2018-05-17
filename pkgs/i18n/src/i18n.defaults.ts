@@ -24,8 +24,8 @@ export const RtlLanguages: string[] = [
   'yi'
 ];
 
-export const I18nAssetsBasePath = 'assets/i18n';
 export const DefaultLanguage = 'en';
+
 /**
  * Default configuration - i18n module
  */
@@ -38,6 +38,5 @@ export const DefaultI18nCfg: I18nCfg = {
       localeExtra: '@angular/common/locales/extra/en'
     }
   },
-  enabledLanguages: ['en'],
-  i18nAssetsBasePath: I18nAssetsBasePath
+  enabledLanguages: ['en']
 };

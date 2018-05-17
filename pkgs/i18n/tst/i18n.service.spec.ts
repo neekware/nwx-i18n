@@ -16,7 +16,37 @@ import { LogModule } from '@nwx/logger';
 
 import { I18nModule } from '../src/i18n.module';
 import { I18nService } from '../src/i18n.service';
-import { I18nTranslations } from '../src/i18n.utils';
+
+export const I18nTranslations = {
+  de: {
+    'COMMON.WELCOME': 'herzlich willkommen',
+    'COMMON.ABOUT': 'Über'
+  },
+  en: {
+    'COMMON.WELCOME': 'Welcome',
+    'COMMON.ABOUT': 'About'
+  },
+  es: {
+    'COMMON.WELCOME': 'Bienvenido',
+    'COMMON.ABOUT': 'Acerca de'
+  },
+  fa: {
+    'COMMON.WELCOME': 'خوش آمدی',
+    'COMMON.ABOUT': 'در باره'
+  },
+  fr: {
+    'COMMON.WELCOME': 'Bienvenue',
+    'COMMON.ABOUT': 'Sur'
+  },
+  he: {
+    'COMMON.WELCOME': 'ברוך הבא',
+    'COMMON.ABOUT': 'על אודות'
+  },
+  'zh-cn': {
+    'COMMON.WELCOME': '欢迎',
+    'COMMON.ABOUT': '关于'
+  }
+};
 
 class CustomLoader implements TranslateLoader {
   getTranslation(lang: string): Observable<any> {
