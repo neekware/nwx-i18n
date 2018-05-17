@@ -94,7 +94,6 @@ import { I18nService } from '@nwx/i18n';
 })
 export class AppComponent {
   title = 'Neekware';
-  options = {};
   constructor(public cfg: CfgService, public log: LogService, public i18n: I18nService) {
     this.title = this.cfg.options.appName;
     this.log.info('AppComponent loaded ...');
@@ -105,6 +104,7 @@ export class AppComponent {
 Include your translated files in the `/assets/i18n` directory of your application.
 
 `/assets/i18n/en.json`
+
 ```json
 {
   "COMMON.WELCOME": "Welcome",
@@ -113,6 +113,7 @@ Include your translated files in the `/assets/i18n` directory of your applicatio
 ```
 
 `/assets/i18n/fr.json`
+
 ```json
 {
   "COMMON.WELCOME": "Bienvenue",
@@ -120,7 +121,53 @@ Include your translated files in the `/assets/i18n` directory of your applicatio
 }
 ```
 
+# Advanced usage:
+
+```typescript
+// In your app.module.ts
+import { Component } from '@angular/core';
+import { CfgService, DefaultCfg } from '@nwx/cfg';
+import { LogService } from '@nwx/logger';
+import { I18nService } from '@nwx/i18n';
+
+@Component({
+  selector: 'app-root',
+  template: `<h1>{{'COMMON.WELCOME' | translate}} to {{ title }}!</h1>`
+})
+export class AppComponent {
+  direction = 'ltr';
+  title = 'Neekware';
+  constructor(public cfg: CfgService, public log: LogService, public i18n: I18nService) {
+    this.title = this.cfg.options.appName;
+
+    // translate in ts files
+    i18n.xlate.get('COMMON.WELCOME').subscribe((res: string) => {
+      this.log.info(res);
+    });
+
+    // check if language is Right2Left `rtl`
+    if (i18n.isLanguageRTL('he')) {
+      this.direction = 'rtl';
+    }
+
+    // change the language
+    i18n.setCurrentLanguage('fr');
+
+    // other available methods
+    // currentLanguage()
+    // defaultLanguage()
+    // enabledLanguages()
+    // isCurrentLanguage(iso)
+    // getLanguageName(iso)
+    // getLanguageDirection(iso)
+    // isLanguageEnabled(iso)
+  }
+}
+```
+
 # Note:
+
+1.  `@nwx/i18n` uses the great `@ngx-translate` package under the hood.
 
 # Sample logs
 
