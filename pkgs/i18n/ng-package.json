@@ -1,0 +1,9 @@
+{
+  "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../../builds/nwx-i18n",
+  "lib": {
+    "flatModuleFile": "nwx-i18n",
+    "entryFile": "index.ts",
+    "umdModuleIds": {}
+  }
+}
