@@ -17,7 +17,7 @@ import { I18nService } from '../src/i18n.service';
 describe('I18nService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [CfgModule.forRoot(), LogModule.forRoot(), I18nModule.forRoot()]
+      imports: [CfgModule.forRoot(), LogModule, I18nModule.forRoot()]
     });
   });
 

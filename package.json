@@ -1,6 +1,6 @@
 {
   "name": "@nwx/i18n",
-  "version": "1.0.1",
+  "version": "0.0.1",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/neekware/nwx-i18n.git"
@@ -54,7 +54,6 @@
     "@nwx/cfg": "^1.0.0",
     "@nwx/logger": "^1.0.1",
     "core-js": "^2.5.4",
-    "lodash": "^4.17.10",
     "rxjs": "^6.0.0",
     "zone.js": "^0.8.26"
   },

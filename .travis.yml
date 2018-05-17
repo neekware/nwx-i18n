@@ -24,4 +24,4 @@ script:
   - yarn ci
 
 after_script:
-  - cat ./coverage/logger/lcov.info | ./node_modules/coveralls/bin/coveralls.js
+  - cat ./coverage/i18n/lcov.info | ./node_modules/coveralls/bin/coveralls.js
