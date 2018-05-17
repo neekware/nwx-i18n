@@ -48,8 +48,8 @@ describe('I18nService', () => {
   it(
     'should translate to English',
     inject([I18nService, TranslateService], (service: I18nService) => {
-      service.xlate.get('COMMON.ABOUT').subscribe((res: string) => {
-        expect(res).toEqual('About');
+      service.xlate.get('COMMON.WELCOME').subscribe((res: string) => {
+        expect(res).toEqual('Welcome');
       });
     })
   );
@@ -58,8 +58,8 @@ describe('I18nService', () => {
     'should translate to French',
     inject([I18nService, TranslateService], (service: I18nService) => {
       service.setCurrentLanguage('fr');
-      service.xlate.get('COMMON.ABOUT').subscribe((res: string) => {
-        expect(res).toEqual('Sur');
+      service.xlate.get('COMMON.WELCOME').subscribe((res: string) => {
+        expect(res).toEqual('Bienvenue');
       });
     })
   );
@@ -68,8 +68,8 @@ describe('I18nService', () => {
     'should detect Rigth to Left',
     inject([I18nService, TranslateService], (service: I18nService) => {
       service.setCurrentLanguage('fa');
-      service.xlate.get('COMMON.ABOUT').subscribe((res: string) => {
-        expect(res).toEqual('در باره');
+      service.xlate.get('COMMON.WELCOME').subscribe((res: string) => {
+        expect(res).toEqual('خوش آمدی');
       });
       expect(service.isLanguageRTL('fa')).toEqual(true);
     })
