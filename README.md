@@ -13,6 +13,111 @@
 
 # How to use
 
+```typescript
+// In your environment{prod,staging}.ts
+
+import { AppCfg, TargetPlatform, HttpMethod } from '@nwx/cfg';
+import { LogLevels } from '@nwx/logger';
+
+export const environment: AppCfg = {
+  // app name
+  appName: 'Neekware',
+  // target (browser, mobile, desktop)
+  target: TargetPlatform.web,
+  // production, staging or development
+  production: false,
+  // one or more app specific field(s)
+  log: {
+    // Log level, (default = none)
+    level: LogLevels.info
+  },
+  i18n: {
+    // available languages
+    availableLanguages: {
+      en: {
+        name: 'English',
+        locale: '@angular/common/locales/en',
+        localeExtra: '@angular/common/locales/extra/en'
+      },
+      fr: {
+        name: 'Français',
+        locale: '@angular/common/locales/fr',
+        localeExtra: '@angular/common/locales/extra/fr'
+      },
+      de: {
+        name: 'Deutsch',
+        locale: '@angular/common/locales/de',
+        localeExtra: '@angular/common/locales/extra/de'
+      }
+    },
+    // enabled languages (iso list)
+    enabledLanguages: [
+      // order is important
+      'en',
+      'fr'
+    ]
+  }
+};
+```
+
+```typescript
+// In your app.module.ts
+
+import { CfgModule } from '@nwx/cfg';
+import { LoggerModule } from '@nwx/logger';
+
+import { environment } from '../environments/environment';
+
+@NgModule({
+  declarations: [AppComponent],
+  imports: [
+    BrowserModule,
+    CfgModule.forRoot(environment),
+    LoggerModule,
+    I18nModule.forRoot()
+  ],
+  bootstrap: [AppComponent]
+})
+export class AppModule {}
+```
+
+```typescript
+// In your app.module.ts
+import { Component } from '@angular/core';
+import { CfgService, DefaultCfg } from '@nwx/cfg';
+import { LogService } from '@nwx/logger';
+import { I18nService } from '@nwx/i18n';
+
+@Component({
+  selector: 'app-root',
+  template: `<h1>{{'COMMON.WELCOME' | translate}} to {{ title }}!</h1>`
+})
+export class AppComponent {
+  title = 'Neekware';
+  options = {};
+  constructor(public cfg: CfgService, public log: LogService, public i18n: I18nService) {
+    this.title = this.cfg.options.appName;
+    this.log.info('AppComponent loaded ...');
+  }
+}
+```
+
+```json
+// In your app's `assets/i18n/en.json`
+{
+  "COMMON.WELCOME": "Welcome",
+  "COMMON.ABOUT": "About"
+}
+```
+
+```json
+// In your app's `/assets/i18n/fr.json`
+{
+  "COMMON.WELCOME": "Bienvenue",
+  "COMMON.ABOUT": "Sur"
+}
+```
+
 # Note:
 
 # Sample logs
