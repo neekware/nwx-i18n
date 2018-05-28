@@ -1,3 +1,9 @@
+## 1.0.1
+
+Enhancements:
+
+  - Emit changeEvent on lang change only
+
 ## 1.0.0
 
 Enhancements:

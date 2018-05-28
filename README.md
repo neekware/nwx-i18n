@@ -173,7 +173,7 @@ export class AppComponent {
 
 To run the tests against the current environment:
 
-    npm run ci
+    npm run ci:all
 
 # License
 
