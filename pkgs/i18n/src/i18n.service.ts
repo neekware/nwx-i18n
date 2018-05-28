@@ -69,8 +69,10 @@ export class I18nService {
   }
 
   setCurrentLanguage(iso: string) {
-    this.xlate.use(iso);
-    this.languageChange$.emit(iso);
+    if (!this.isCurrentLanguage(iso)) {
+      this.xlate.use(iso);
+      this.languageChange$.emit(iso);
+    }
   }
 
   isCurrentLanguage(iso: string): boolean {
