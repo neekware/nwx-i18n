@@ -1,3 +1,9 @@
+## 1.0.2
+
+Enhancements:
+
+  - Bump @nwx/cfg
+
 ## 1.0.1
 
 Enhancements:

@@ -48,7 +48,7 @@ export const I18nTranslations = {
 
 const AppEnv: AppCfg = {
   appName: '@nwx/i18n',
-  production: false
+  production: true
 };
 
 class CustomLoader implements TranslateLoader {

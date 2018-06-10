@@ -2,10 +2,11 @@
   "name": "@nwx/i18n",
   "description": "A simple translation module for Angular applications",
   "peerDependencies": {
+    "lodash": "^4.17.5",
     "rxjs": "^6.0.0",
     "@angular/core": "^6.0.0",
-    "@nwx/cfg": "^1.0.0",
-    "@nwx/logger": "^1.0.1",
+    "@nwx/cfg": "^1.0.2",
+    "@nwx/logger": "^1.0.3",
     "@ngx-translate/core": "^10.0.1",
     "@ngx-translate/http-loader": "^3.0.1"
   }
