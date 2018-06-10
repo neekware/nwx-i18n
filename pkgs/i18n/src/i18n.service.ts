@@ -9,7 +9,7 @@
 import { Injectable, Output, EventEmitter } from '@angular/core';
 import { registerLocaleData } from '@angular/common';
 
-import { get } from 'lodash';
+import { get, merge } from 'lodash';
 import { map, catchError } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -32,7 +32,7 @@ export class I18nService {
     public log: LogService,
     public xlate: TranslateService
   ) {
-    this.options = { i18n: { ...DefaultI18nCfg }, ...cfg.options };
+    this.options = merge({ i18n: DefaultI18nCfg }, cfg.options);
     this.initLanguage();
     log.debug(`I18nService ready ... (${this.currentLanguage})`);
   }
@@ -91,12 +91,13 @@ export class I18nService {
       this.options.i18n.enabledLanguages
     );
     let iso = this.options.i18n.defaultLanguage;
+    this.xlate.setDefaultLang(iso);
     this.xlate.addLangs(Object.keys(this.options.i18n.enabledLanguages));
+
     const language = this.xlate.getBrowserCultureLang().toLowerCase();
     if (this.isLanguageEnabled(language)) {
       iso = language;
     }
-    this.xlate.setDefaultLang(iso);
     this.setCurrentLanguage(iso);
   }
 }

@@ -11,11 +11,17 @@ import { TestBed, inject } from '@angular/core/testing';
 import { Observable, of as observableOf } from 'rxjs';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 
-import { CfgModule } from '@nwx/cfg';
+import { CfgModule, AppCfg } from '@nwx/cfg';
 import { LogModule } from '@nwx/logger';
 
 import { I18nModule } from '../src/i18n.module';
 import { I18nService } from '../src/i18n.service';
+import { DefaultLanguage } from '../src/i18n.defaults';
+
+const AppEnv: AppCfg = {
+  appName: '@nwx/i18n',
+  production: false
+};
 
 export const I18nTranslations = {
   de: {
@@ -58,7 +64,7 @@ describe('I18nService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        CfgModule.forRoot(),
+        CfgModule.forRoot(AppEnv),
         LogModule,
         I18nModule.forRoot(),
         TranslateModule.forRoot({
@@ -72,6 +78,13 @@ describe('I18nService', () => {
     'should be created',
     inject([I18nService, TranslateService], (service: I18nService) => {
       expect(service).toBeTruthy();
+    })
+  );
+
+  it(
+    'should be created with default options',
+    inject([I18nService, TranslateService], (service: I18nService) => {
+      expect(service.options.i18n.defaultLanguage).toEqual(DefaultLanguage);
     })
   );
 
