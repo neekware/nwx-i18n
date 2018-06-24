@@ -34,6 +34,8 @@ export class I18nCfg {
   enabledLanguages: string[];
   // available languages
   availableLanguages: LanguageInfo;
+  // cache busting hash
+  cacheBustingHash: string;
 }
 
 /**

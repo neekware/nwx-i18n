@@ -10,11 +10,15 @@ import { NgModule, ModuleWithProviders, Optional, SkipSelf } from '@angular/core
 import { CommonModule } from '@angular/common';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 
+import { get, merge } from 'lodash';
 import { TranslateModule, TranslateLoader, TranslateService } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { CfgService } from '@nwx/cfg';
 
-export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http);
+export function HttpLoaderFactory(http: HttpClient, cfg: CfgService) {
+  const cache = get(cfg.options.i18n, 'cacheBustingHash');
+  console.log(cache);
+  return new TranslateHttpLoader(http, '/assets/i18n/', `.json?hash=${cache}`);
 }
 
 @NgModule({
@@ -25,7 +29,7 @@ export function HttpLoaderFactory(http: HttpClient) {
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
+        deps: [HttpClient, CfgService]
       }
     })
   ],

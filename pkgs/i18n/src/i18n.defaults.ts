@@ -38,5 +38,6 @@ export const DefaultI18nCfg: I18nCfg = {
       localeExtra: '@angular/common/locales/extra/en'
     }
   },
-  enabledLanguages: ['en']
+  enabledLanguages: ['en'],
+  cacheBustingHash: ''
 };
