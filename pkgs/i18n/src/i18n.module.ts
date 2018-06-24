@@ -17,7 +17,6 @@ import { CfgService } from '@nwx/cfg';
 
 export function HttpLoaderFactory(http: HttpClient, cfg: CfgService) {
   const cache = get(cfg.options.i18n, 'cacheBustingHash');
-  console.log(cache);
   return new TranslateHttpLoader(http, '/assets/i18n/', `.json?hash=${cache}`);
 }
 
