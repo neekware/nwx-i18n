@@ -55,7 +55,10 @@ export const environment: AppCfg = {
       // order is important
       'en',
       'fr'
-    ]
+    ],
+    // cache busting hash
+    // bump when you change any file in /assets/i18n/*.json
+    cacheBustingHash: 'v1.0.0'
   }
 };
 ```

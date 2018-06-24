@@ -60,6 +60,7 @@ export const environment: AppCfg = {
       'es',
       'he',
       'fa'
-    ]
+    ],
+    cacheBustingHash: 'v1.0.0'
   }
 };

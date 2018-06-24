@@ -17,14 +17,18 @@ import { AppCfg, CfgService } from '@nwx/cfg';
 import { LogService } from '@nwx/logger';
 
 import { I18nCfg, LanguageDirection } from './i18n.types';
-import { RtlLanguages, DefaultI18nCfg } from './i18n.defaults';
+import { RtlLanguages, DefaultI18nCfg, DefaultLanguage } from './i18n.defaults';
 import { registerActiveLocales } from './i18n.locales';
 
 @Injectable({
   providedIn: 'root'
 })
 export class I18nService {
-  public options: AppCfg = null;
+  options: AppCfg = null;
+  direction = 'rtl';
+  currentLanguage = null;
+  defaultLanguage = DefaultLanguage;
+  enabledLanguages: string[] = [];
   @Output() languageChange$ = new EventEmitter<string>();
 
   constructor(
@@ -48,29 +52,17 @@ export class I18nService {
     return LanguageDirection.ltr;
   }
 
-  get direction() {
-    return this.getLanguageDirection(this.currentLanguage);
-  }
-
   isLanguageRTL(iso: string): boolean {
     return RtlLanguages.indexOf(iso) > -1;
-  }
-
-  get defaultLanguage() {
-    return this.options.i18n.defaultLanguage;
-  }
-
-  get currentLanguage() {
-    return this.xlate.currentLang;
-  }
-
-  get enabledLanguages() {
-    return this.options.i18n.enabledLanguages;
   }
 
   setCurrentLanguage(iso: string) {
     if (!this.isCurrentLanguage(iso)) {
       this.xlate.use(iso);
+      this.defaultLanguage = this.options.i18n.defaultLanguage;
+      this.currentLanguage = this.xlate.currentLang;
+      this.direction = this.getLanguageDirection(this.currentLanguage);
+      this.enabledLanguages = this.options.i18n.enabledLanguages;
       this.languageChange$.emit(iso);
     }
   }
