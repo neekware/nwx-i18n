@@ -1,3 +1,9 @@
+## 1.0.3
+
+Enhancements:
+
+  - Add cache busting support (via env cfg)
+
 ## 1.0.2
 
 Enhancements:

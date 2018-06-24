@@ -24,7 +24,7 @@ import { registerActiveLocales } from './i18n.locales';
   providedIn: 'root'
 })
 export class I18nService {
-  public options: AppCfg = null;
+  options: AppCfg = null;
   @Output() languageChange$ = new EventEmitter<string>();
 
   constructor(
