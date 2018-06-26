@@ -64,7 +64,7 @@ export const environment: AppCfg = {
 ```
 
 ```typescript
-// In your app.module.ts
+// In your app.component.ts
 
 import { CfgModule } from '@nwx/cfg';
 import { LoggerModule } from '@nwx/logger';
@@ -85,7 +85,7 @@ export class AppModule {}
 ```
 
 ```typescript
-// In your app.module.ts
+// In your app.component.ts
 import { Component } from '@angular/core';
 import { CfgService, DefaultCfg } from '@nwx/cfg';
 import { LogService } from '@nwx/logger';
@@ -127,7 +127,7 @@ Include your translated files in the `/assets/i18n` directory of your applicatio
 # Advanced usage:
 
 ```typescript
-// In your app.module.ts
+// In your app.component.ts
 import { Component } from '@angular/core';
 import { CfgService, DefaultCfg } from '@nwx/cfg';
 import { LogService } from '@nwx/logger';
@@ -156,10 +156,13 @@ export class AppComponent {
     // change the language
     i18n.setCurrentLanguage('fr');
 
+    // other available properties
+    // direction
+    // currentLanguage
+    // defaultLanguage
+    // enabledLanguages
+    
     // other available methods
-    // currentLanguage()
-    // defaultLanguage()
-    // enabledLanguages()
     // isCurrentLanguage(iso)
     // getLanguageName(iso)
     // getLanguageDirection(iso)
