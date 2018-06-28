@@ -39,7 +39,7 @@ export class I18nService {
   ) {
     this.options = merge({ i18n: DefaultI18nCfg }, cfg.options);
     this.initLanguage();
-    log.debug(`I18nService ready ... (${this.currentLanguage})`);
+    log.debug(`I18nService ready ... (${this.currentLanguage} - ${this.direction})`);
   }
 
   isLanguageEnabled(iso: string): boolean {
@@ -62,6 +62,7 @@ export class I18nService {
     this.currentLanguage = this.xlate.currentLang;
     this.direction = this.getLanguageDirection(this.currentLanguage);
     this.languageChange$.emit(iso);
+    this.log.debug(`Lanugage changed ... (${this.currentLanguage} - ${this.direction})`);
   }
 
   isCurrentLanguage(iso: string): boolean {
@@ -69,9 +70,7 @@ export class I18nService {
   }
 
   getLanguageName(iso: string): string {
-    return this.isLanguageEnabled(iso)
-      ? this.availableLanguages[iso].name
-      : null;
+    return this.isLanguageEnabled(iso) ? this.availableLanguages[iso].name : null;
   }
 
   private initLanguage() {
