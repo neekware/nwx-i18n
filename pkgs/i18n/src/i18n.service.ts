@@ -10,7 +10,7 @@ import { Injectable, Output, EventEmitter } from '@angular/core';
 import { registerLocaleData } from '@angular/common';
 
 import { get, merge } from 'lodash';
-import { map, catchError } from 'rxjs/operators';
+import { map, catchError, takeWhile } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
 
 import { AppCfg, CfgService } from '@nwx/cfg';
@@ -31,6 +31,7 @@ export class I18nService {
   availableLanguages: { [key: string]: any } = {};
   enabledLanguages: string[] = [];
   @Output() languageChange$ = new EventEmitter<string>();
+  private _isDestroyed = false;
 
   constructor(
     public cfg: CfgService,
@@ -57,14 +58,6 @@ export class I18nService {
     return RtlLanguages.indexOf(iso) > -1;
   }
 
-  setCurrentLanguage(iso: string) {
-    this.xlate.use(iso);
-    this.currentLanguage = this.xlate.currentLang;
-    this.direction = this.getLanguageDirection(this.currentLanguage);
-    this.languageChange$.emit(iso);
-    this.log.debug(`Lanugage changed ... (${this.currentLanguage} - ${this.direction})`);
-  }
-
   isCurrentLanguage(iso: string): boolean {
     return iso === this.xlate.currentLang;
   }
@@ -73,7 +66,22 @@ export class I18nService {
     return this.isLanguageEnabled(iso) ? this.availableLanguages[iso].name : null;
   }
 
+  setCurrentLanguage(iso: string) {
+    if (this.isLanguageEnabled(iso)) {
+      this.xlate.use(iso);
+    } else {
+      this.log.debug(`I18nService - language not enabled ... (${this.currentLanguage})`);
+    }
+  }
+
   private initLanguage() {
+    this.xlate.onLangChange.pipe(takeWhile(() => !this._isDestroyed)).subscribe(event => {
+      this.currentLanguage = event.lang;
+      this.direction = this.getLanguageDirection(event.lang);
+      this.languageChange$.emit(event.lang);
+      this.log.debug(`I18nService - language changed ... (${this.currentLanguage})`);
+    });
+
     this.defaultLanguage = this.options.i18n.defaultLanguage;
     this.availableLanguages = this.options.i18n.availableLanguages;
     this.enabledLanguages = this.options.i18n.enabledLanguages;
@@ -89,7 +97,6 @@ export class I18nService {
     if (!this.isLanguageEnabled(iso)) {
       iso = this.defaultLanguage;
     }
-    this.direction = this.getLanguageDirection(iso);
     this.setCurrentLanguage(iso);
   }
 }
