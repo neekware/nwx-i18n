@@ -156,13 +156,13 @@ export class AppComponent {
     // change the language
     i18n.setCurrentLanguage('fr');
 
-    // other available properties
+    // available properties
     // direction
     // currentLanguage
     // defaultLanguage
     // enabledLanguages
-    
-    // other available methods
+
+    // available methods
     // isCurrentLanguage(iso)
     // getLanguageName(iso)
     // getLanguageDirection(iso)

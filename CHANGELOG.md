@@ -1,3 +1,9 @@
+## 1.0.4
+
+Bugfix:
+
+  - Fix direction update on lang change
+
 ## 1.0.3
 
 Enhancements:
