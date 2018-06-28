@@ -114,6 +114,7 @@ describe('I18nService', () => {
       service.xlate.get('COMMON.WELCOME').subscribe((res: string) => {
         expect(res).toEqual('خوش آمدی');
       });
+      expect(service.direction).toEqual('rtl');
       expect(service.isLanguageRTL('fa')).toEqual(true);
     })
   );
