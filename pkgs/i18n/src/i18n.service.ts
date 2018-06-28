@@ -25,9 +25,10 @@ import { registerActiveLocales } from './i18n.locales';
 })
 export class I18nService {
   options: AppCfg = null;
-  direction = 'rtl';
-  currentLanguage = null;
+  currentLanguage = DefaultLanguage;
   defaultLanguage = DefaultLanguage;
+  direction: string = LanguageDirection.ltr;
+  availableLanguages: { [key: string]: any } = {};
   enabledLanguages: string[] = [];
   @Output() languageChange$ = new EventEmitter<string>();
 
@@ -42,7 +43,7 @@ export class I18nService {
   }
 
   isLanguageEnabled(iso: string): boolean {
-    return this.options.i18n.enabledLanguages.indexOf(iso) > -1;
+    return this.enabledLanguages.indexOf(iso) > -1;
   }
 
   getLanguageDirection(iso: string): string {
@@ -57,14 +58,10 @@ export class I18nService {
   }
 
   setCurrentLanguage(iso: string) {
-    if (!this.isCurrentLanguage(iso)) {
-      this.xlate.use(iso);
-      this.defaultLanguage = this.options.i18n.defaultLanguage;
-      this.currentLanguage = this.xlate.currentLang;
-      this.direction = this.getLanguageDirection(this.currentLanguage);
-      this.enabledLanguages = this.options.i18n.enabledLanguages;
-      this.languageChange$.emit(iso);
-    }
+    this.xlate.use(iso);
+    this.currentLanguage = this.xlate.currentLang;
+    this.direction = this.getLanguageDirection(this.currentLanguage);
+    this.languageChange$.emit(iso);
   }
 
   isCurrentLanguage(iso: string): boolean {
@@ -73,23 +70,27 @@ export class I18nService {
 
   getLanguageName(iso: string): string {
     return this.isLanguageEnabled(iso)
-      ? this.options.i18n.availableLanguages[iso].name
+      ? this.availableLanguages[iso].name
       : null;
   }
 
   private initLanguage() {
+    this.defaultLanguage = this.options.i18n.defaultLanguage;
+    this.availableLanguages = this.options.i18n.availableLanguages;
+    this.enabledLanguages = this.options.i18n.enabledLanguages;
+
     registerActiveLocales(
       this.options.i18n.availableLanguages,
       this.options.i18n.enabledLanguages
     );
-    let iso = this.options.i18n.defaultLanguage;
-    this.xlate.setDefaultLang(iso);
-    this.xlate.addLangs(Object.keys(this.options.i18n.enabledLanguages));
 
-    const language = this.xlate.getBrowserCultureLang().toLowerCase();
-    if (this.isLanguageEnabled(language)) {
-      iso = language;
+    this.xlate.addLangs(Object.keys(this.options.i18n.enabledLanguages));
+    this.xlate.setDefaultLang(this.defaultLanguage);
+    let iso = this.xlate.getBrowserCultureLang().toLowerCase();
+    if (!this.isLanguageEnabled(iso)) {
+      iso = this.defaultLanguage;
     }
+    this.direction = this.getLanguageDirection(iso);
     this.setCurrentLanguage(iso);
   }
 }
