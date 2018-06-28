@@ -98,6 +98,24 @@ describe('AppComponent', () => {
     fixture.componentInstance.i18n.setCurrentLanguage('fr');
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Bienvenue to @nwx/i18n!');
+    fixture.componentInstance.i18n.languageChange$.subscribe(lang => {
+      expect(lang).toBe('fr');
+      expect(fixture.componentInstance.i18n.direction).toBe('ltr');
+      expect(compiled.querySelector('h1').textContent).toContain(
+        'Bienvenue to @nwx/i18n!'
+      );
+    });
+  }));
+
+  it('should render title in a h1 tag in persian', async(() => {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.componentInstance.i18n.setCurrentLanguage('fa');
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    fixture.componentInstance.i18n.languageChange$.subscribe(lang => {
+      expect(lang).toBe('fa');
+      expect(fixture.componentInstance.i18n.direction).toBe('rtl');
+      expect(compiled.querySelector('h1').textContent).toContain('خوش آمدی');
+    });
   }));
 });

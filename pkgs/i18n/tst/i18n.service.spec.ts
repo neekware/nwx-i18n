@@ -96,26 +96,5 @@ describe('I18nService', () => {
       });
     })
   );
-
-  it(
-    'should translate to French',
-    inject([I18nService, TranslateService], (service: I18nService) => {
-      service.setCurrentLanguage('fr');
-      service.xlate.get('COMMON.WELCOME').subscribe((res: string) => {
-        expect(res).toEqual('Bienvenue');
-      });
-    })
-  );
-
-  it(
-    'should detect Rigth to Left',
-    inject([I18nService, TranslateService], (service: I18nService) => {
-      service.setCurrentLanguage('fa');
-      service.xlate.get('COMMON.WELCOME').subscribe((res: string) => {
-        expect(res).toEqual('خوش آمدی');
-      });
-      expect(service.direction).toEqual('rtl');
-      expect(service.isLanguageRTL('fa')).toEqual(true);
-    })
-  );
+  // TODO: add async language change test
 });

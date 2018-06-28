@@ -75,16 +75,16 @@ export class I18nService {
   }
 
   private initLanguage() {
+    this.defaultLanguage = this.options.i18n.defaultLanguage;
+    this.availableLanguages = this.options.i18n.availableLanguages;
+    this.enabledLanguages = this.options.i18n.enabledLanguages;
+
     this.xlate.onLangChange.pipe(takeWhile(() => !this._isDestroyed)).subscribe(event => {
       this.currentLanguage = event.lang;
       this.direction = this.getLanguageDirection(event.lang);
       this.languageChange$.emit(event.lang);
       this.log.debug(`I18nService - language changed ... (${this.currentLanguage})`);
     });
-
-    this.defaultLanguage = this.options.i18n.defaultLanguage;
-    this.availableLanguages = this.options.i18n.availableLanguages;
-    this.enabledLanguages = this.options.i18n.enabledLanguages;
 
     registerActiveLocales(
       this.options.i18n.availableLanguages,
