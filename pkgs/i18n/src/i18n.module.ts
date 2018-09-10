@@ -43,20 +43,17 @@ export function HttpLoaderFactory(http: HttpClient, cfg: CfgService) {
   exports: [TranslatePipe, TranslateDirective]
 })
 export class I18nModule {
-  constructor(
-    @Optional()
-    @SkipSelf()
-    parentModule: I18nModule
-  ) {
-    if (parentModule) {
-      throw new Error('I18nModule is already loaded. Import it in the AppModule only');
-    }
-  }
-
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: I18nModule,
       providers: [I18nService, TranslateService]
+    };
+  }
+
+  static forChild(): ModuleWithProviders {
+    return {
+      ngModule: I18nModule,
+      providers: [TranslateService]
     };
   }
 }
