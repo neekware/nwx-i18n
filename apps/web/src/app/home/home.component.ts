@@ -6,14 +6,14 @@ import { LogService } from '@nwx/logger';
 import { I18nService } from 'pkgs/i18n';
 
 @Component({
-  selector: 'app-root',
-  template: '<router-outlet></router-outlet>'
+  selector: 'app-home',
+  templateUrl: './home.component.html'
 })
-export class AppComponent {
-  title = 'Neekware';
+export class HomeComponent {
+  title = 'home';
   options = {};
   constructor(public cfg: CfgService, public log: LogService, public i18n: I18nService) {
-    this.title = this.cfg.options.appName;
-    this.log.info('AppComponent loaded ...');
+    this.title = cfg.options.appName;
+    this.log.info('HomeComponent loaded ...');
   }
 }

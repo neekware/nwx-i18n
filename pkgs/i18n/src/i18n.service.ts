@@ -19,10 +19,9 @@ import { LogService } from '@nwx/logger';
 import { I18nCfg, LanguageDirection } from './i18n.types';
 import { RtlLanguages, DefaultI18nCfg, DefaultLanguage } from './i18n.defaults';
 import { registerActiveLocales } from './i18n.locales';
-import { I18nModule } from './i18n.module';
 
 @Injectable({
-  providedIn: I18nModule
+  providedIn: 'root'
 })
 export class I18nService {
   options: AppCfg = null;

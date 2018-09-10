@@ -40,20 +40,18 @@ export function HttpLoaderFactory(http: HttpClient, cfg: CfgService) {
       }
     })
   ],
-  exports: [TranslatePipe, TranslateDirective]
+  exports: [TranslateModule]
 })
 export class I18nModule {
   static forRoot(): ModuleWithProviders {
     return {
-      ngModule: I18nModule,
-      providers: [I18nService, TranslateService]
+      ngModule: I18nModule
     };
   }
 
   static forChild(): ModuleWithProviders {
     return {
-      ngModule: I18nModule,
-      providers: [TranslateService]
+      ngModule: TranslateModule
     };
   }
 }
