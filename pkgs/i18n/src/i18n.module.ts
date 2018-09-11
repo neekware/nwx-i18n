@@ -11,9 +11,17 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 import { get, merge } from 'lodash';
-import { TranslateModule, TranslateLoader, TranslateService } from '@ngx-translate/core';
+import {
+  TranslateModule,
+  TranslateLoader,
+  TranslateService,
+  TranslatePipe,
+  TranslateDirective
+} from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { CfgService } from '@nwx/cfg';
+
+import { I18nService } from './i18n.service';
 
 export function HttpLoaderFactory(http: HttpClient, cfg: CfgService) {
   const cache = get(cfg.options.i18n, 'cacheBustingHash');
@@ -35,20 +43,15 @@ export function HttpLoaderFactory(http: HttpClient, cfg: CfgService) {
   exports: [TranslateModule]
 })
 export class I18nModule {
-  constructor(
-    @Optional()
-    @SkipSelf()
-    parentModule: I18nModule
-  ) {
-    if (parentModule) {
-      throw new Error('I18nModule is already loaded. Import it in the AppModule only');
-    }
-  }
-
   static forRoot(): ModuleWithProviders {
     return {
-      ngModule: I18nModule,
-      providers: [TranslateService]
+      ngModule: I18nModule
+    };
+  }
+
+  static forChild(): ModuleWithProviders {
+    return {
+      ngModule: TranslateModule
     };
   }
 }

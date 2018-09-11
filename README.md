@@ -77,7 +77,7 @@ import { environment } from '../environments/environment';
     BrowserModule,
     CfgModule.forRoot(environment), // make the environment injectable
     LoggerModule,
-    I18nModule.forRoot()
+    I18nModule.forRoot() // use forChild() for lazy loaded modules
   ],
   bootstrap: [AppComponent]
 })

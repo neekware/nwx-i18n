@@ -1,3 +1,9 @@
+## 1.0.5
+
+Enhancements:
+
+  - Support for lazy loaded modules
+
 ## 1.0.4
 
 Bugfix:
