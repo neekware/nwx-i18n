@@ -29,30 +29,19 @@ export function HttpLoaderFactory(http: HttpClient, cfg: CfgService) {
 }
 
 @NgModule({
-  imports: [
-    CommonModule,
-    HttpClientModule,
-    TranslateModule.forRoot({
+  imports: [CommonModule, HttpClientModule]
+})
+export class I18nModule extends TranslateModule {
+  static forRoot(): ModuleWithProviders {
+    return TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
         deps: [HttpClient, CfgService]
       }
-    })
-  ],
-  exports: [TranslatePipe, TranslateDirective],
-  providers: [TranslateModule]
-})
-export class I18nModule {
-  static forRoot(): ModuleWithProviders {
-    return {
-      ngModule: I18nModule
-    };
+    });
   }
-
-  static forChild(): ModuleWithProviders {
-    return {
-      ngModule: TranslateModule
-    };
+  static forChild() {
+    return { ngModule: TranslateModule };
   }
 }

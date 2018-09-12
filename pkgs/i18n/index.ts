@@ -10,3 +10,4 @@ export { I18nCfg, _ } from './src/i18n.types';
 export { DefaultI18nCfg } from './src/i18n.defaults';
 export { I18nModule } from './src/i18n.module';
 export { I18nService } from './src/i18n.service';
+export { TranslateModule as I18nSharedModule } from '@ngx-translate/core';

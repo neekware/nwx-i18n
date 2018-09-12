@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { LazyComponent } from './lazy.component';
-import { I18nModule } from 'pkgs/i18n';
+import { I18nSharedModule } from 'pkgs/i18n';
 
 export const lazyRoutes: Routes = [
   {
@@ -17,7 +17,7 @@ export const lazyRoutes: Routes = [
 ];
 
 @NgModule({
-  imports: [CommonModule, RouterModule.forChild(lazyRoutes), I18nModule.forChild()],
+  imports: [CommonModule, RouterModule.forChild(lazyRoutes), I18nSharedModule],
   declarations: [LazyComponent]
 })
 export class LazyModule {}
