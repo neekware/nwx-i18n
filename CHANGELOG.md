@@ -1,3 +1,9 @@
+## 1.0.6
+
+Enhancements:
+
+  - Simplify shared usage (I18nSharedModule)
+
 ## 1.0.5
 
 Enhancements:

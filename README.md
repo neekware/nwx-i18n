@@ -64,10 +64,11 @@ export const environment: AppCfg = {
 ```
 
 ```typescript
-// In your app.component.ts
+// In your app.module.ts
 
 import { CfgModule } from '@nwx/cfg';
 import { LoggerModule } from '@nwx/logger';
+import { I18nModule } from '@nwx/i18n';
 
 import { environment } from '../environments/environment';
 
@@ -77,7 +78,7 @@ import { environment } from '../environments/environment';
     BrowserModule,
     CfgModule.forRoot(environment), // make the environment injectable
     LoggerModule,
-    I18nModule.forRoot() // use forChild() for lazy loaded modules
+    I18nModule.forRoot()
   ],
   bootstrap: [AppComponent]
 })
@@ -99,6 +100,7 @@ export class AppComponent {
   title = 'Neekware';
   constructor(public cfg: CfgService, public log: LogService, public i18n: I18nService) {
     this.title = this.cfg.options.appName;
+    this.i18n.setCurrentLanguage('fr'); // set language to French
     this.log.info('AppComponent loaded ...');
   }
 }
@@ -169,6 +171,30 @@ export class AppComponent {
     // isLanguageEnabled(iso)
   }
 }
+```
+
+```typescript
+// In your shared.module.ts
+
+import { I18nSharedModule } from '@nwx/i18n';
+
+@NgModule({
+  declarations: [SharedComponent],
+  imports: [CommonModule, I18nSharedModule)],
+})
+export class SharedModule {}
+```
+
+```typescript
+// In your lazy.module.ts
+
+import { SharedModule } from './shared';
+
+@NgModule({
+  declarations: [LazyComponent],
+  imports: [CommonModule, SharedModule]
+})
+export class LazyModule {}
 ```
 
 # Note:
