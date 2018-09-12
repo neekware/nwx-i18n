@@ -40,7 +40,8 @@ export function HttpLoaderFactory(http: HttpClient, cfg: CfgService) {
       }
     })
   ],
-  exports: [TranslateModule]
+  exports: [TranslatePipe, TranslateDirective],
+  providers: [TranslateModule]
 })
 export class I18nModule {
   static forRoot(): ModuleWithProviders {
