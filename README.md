@@ -1,8 +1,8 @@
+# Library was deprecated in favor of [`@fullerstack/ngx-i18n`](https://github.com/neekware/fullerstack/tree/main/libs/ngx-i18n)
+
 # @nwx/i18n
 
 **A simple translation module for Angular applications**
-
-# Library was deprecated in favor of [`@fullerstack/ngx-i18n`](https://github.com/neekware/fullerstack/tree/main/libs/ngx-i18n)
 
 [![status-image]][status-link]
 [![version-image]][version-link]
